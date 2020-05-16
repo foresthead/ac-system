@@ -12,13 +12,13 @@ class OperateAc (self, object):
   def setPara():
     #here goes the setPara code (there are several arguments also given to this function;
   
-  def StarUp():
+  def StartUp():
     #here goes the StartUp code;
     
     
     
- class MonitorAc(self, object):
+class MonitorAc(self, object):
   
-   def CheckRoomState(list_Room):
+  def CheckRoomState(list_Room):
       #here goes the checkRoomState code;
       

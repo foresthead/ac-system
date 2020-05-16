@@ -1,11 +1,24 @@
 #这部分是由空调管理人员该角色的代码构成的谢谢大家的配合
 
 
-class AC_manager:
-  #whatever function that is construct of 
+#this is the manager part, it is made of two main classes, yunxing kongtiao and lanshekongtiao
+
+
+class OperateAc (self, object):
   
-  def check(self, object):
-    #这部分函数是来监视空调
+  def PowerOn():
+    #here goes the power on code;
     
-  def operateAC(self, object):
-    #这部分函数是来运行空调
+  def setPara():
+    #here goes the setPara code (there are several arguments also given to this function;
+  
+  def StarUp():
+    #here goes the StartUp code;
+    
+    
+    
+ class MonitorAc(self, object):
+  
+   def CheckRoomState(list_Room):
+      #here goes the checkRoomState code;
+      

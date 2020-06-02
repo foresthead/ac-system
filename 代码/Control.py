@@ -45,10 +45,4 @@ class control:
         ServicesQueue[2].ChangeState("Ready")
 
 
-Control = control()
-dispatch , queue = Control.PowerON()
-dispatch.ChangeState("Ready")
-dispatch.PrintState()
-for i in range (0,3):
-    print(queue[i].PrintState())
       

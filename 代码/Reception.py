@@ -1,24 +1,48 @@
+# controller will tell classes what to do
+
+
+class ReceptionController:
+    def __init__(self, InitialType):
+        self.choice = InitialType  # this attribute will tell the class, what did user choose - invoice or DR
+
+    # this method contains service constructor
+    def CreateService(self):
+        if self.choice == 'RDR':
+            print("RDR service start...")
+        elif self.choice == 'I':
+            print("Invoice service start...")
+        else:
+            print("Service initializing error")
+
+    # this method will create this object
+    def Create_PrintList(self):
+        if self.choice == 'RDR':
+            print("RDR processing...")
+        elif self.choice == 'I':
+            print("Invoice processing...")
+        else:
+            print("Processing error")
+
+    # this method contains sends a printing command
+    def Print(self):
+        if self.choice == 'RDR':
+            print("Printing DR...")
+        elif self.choice == 'I':
+            print("Printing invoice...")
+        else:
+            print('print error')
+
+
 ##################################################################################
 #                                                                                #
 #                             RDR RELATED PART                                   #
 #                                                                                #
 ##################################################################################
 
-# Reception controller for Requesting Detailed Records(RDR)
-class RControlRDR:
-
-    # this method creates RDRService class
-    def CreateRDRService(self):
-        print("object created")
-
-    def CreateRDR(self):
-        print("commanding to make RDR")
-
-    def PrintRDR(self):
-        print("passed the command to print")
 
 class ServiceRDR:
     pass
+
 
 class list_RDR:
     pass
@@ -30,25 +54,18 @@ class list_RDR:
 #                                                                                #
 ##################################################################################
 
-class RControlInvoice:
-
-    def CreateInvoiceService(self):
-        print("invoice service created")
-
-    def CreateInvoice(self):
-        print("command to make invoice")
-
-    def PrintInvoice(self):
-        print("passed the command to print I")
 
 class ServiceInvoice:
     pass
 
-class InvoicePrinter:
-    pass
 
 class InvoiceData:
     pass
+
+
+class InvoicePrinter:
+    pass
+
 
 ##################################################################################
 #                                                                                #
@@ -56,27 +73,14 @@ class InvoiceData:
 #                                                                                #
 ##################################################################################
 
-controller1 = RControlRDR()
-controller2 = RControlInvoice()
-UserChoice = input("RDR or I")
-if UserChoice == ('RDR'):
-    UserChoice = input("1 2 or 3")
-    if UserChoice==('1'):
-        controller1.CreateRDRService()
-    elif UserChoice==('2'):
-        controller1.CreateRDR()
-    elif UserChoice==('3'):
-        controller1.PrintRDR()
-    else:
-        print("error")
 
-if UserChoice == ('I'):
-    UserChoice = input("1 2 or 3")
-    if UserChoice==('1'):
-        controller2.CreateInvoiceService()
-    elif UserChoice==('2'):
-        controller2.CreateInvoice()
-    elif UserChoice==('3'):
-        controller2.PrintInvoice()
-    else:
-        print("error")
+InitialType = input("RDR or I")
+ReceptionQuery = ReceptionController(InitialType)
+ReceptionQuery.CreateService()
+UserChoice: str = input("Show on the screen or Print(1 or 2)")
+if UserChoice == ('1'):
+    ReceptionQuery.Create_PrintList()
+elif UserChoice == ('2'):
+    ReceptionQuery.Print()
+else:
+    print("error")

@@ -1,8 +1,8 @@
 Administrator code
 the Administrator forldier is made of four different files(.py) that are:
-  -control part
-  -services part
-  -and the dispatch part
+  - control part
+  - services part
+  - and the dispatch part
   
  Each parts are basically compose of classes that inherite the name of the file, feel free to take a look and leave suggestions.
  To simultaneously run all the part, do as said below:

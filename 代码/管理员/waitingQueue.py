@@ -1,14 +1,17 @@
+
 class waitingQueue:
 
     def __init__(self):
         self.queue = []
+        self.queue_length = 0
 
 
     def insert(self,request):
         #添加请求到等待队列
         self.queue.append(request)
+        self.queue_length += 1
         self.sort_by()
-        print("the ", i, "th request is succefully inserted to the queue")
+        print("the request ", request.id, " is succefully inserted to the queue")
 
 
     def delete(self,request):

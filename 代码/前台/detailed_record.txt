@@ -1,0 +1,8 @@
+Your room:			2
+Temperature:			28
+FanSpeed:			1
+Fee Rate:			5
+Fee:				15
+Check In Time:		2017-02-26 00:00:00
+Time Now:			2020-06-05 21:46:03.413146
+Time in hotel:		1195 days, 21:46:03.413146

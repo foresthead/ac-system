@@ -70,8 +70,6 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
         ThisList = list_RDR(self.RoomID, prepareList)
         OutputScreen = ThisList.ReadyList()
         return OutputScreen
-        # for i in range(len(OutputScreen)):      # output every string of our list_RDR
-        #     print(OutputScreen[i])
 
 
     # Getting values from Database and time method
@@ -84,8 +82,8 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
         OurDateIn = OurTimeList[0]
         OurDateOut = OurTimeList[1]
         OurDuration = OurTimeList[2]
-        prepareList = [str(OurTemperature), str(OurFanSpeed), str(OurFeeRate), str(OurFee), OurDateIn, OurDateOut, OurDuration]
-        return prepareList
+        result = [str(OurTemperature), str(OurFanSpeed), str(OurFeeRate), str(OurFee), OurDateIn, OurDateOut, OurDuration]
+        return result
 
 
     # does everything related to time and puts it in special list
@@ -95,8 +93,8 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
         TimeIn = self.ValuesSource.CheckInTime
         TimeNow = datetime.datetime.now()
         Duration = TimeNow - TimeIn
-        TimeList = [str(TimeIn), str(TimeNow), str(Duration)]
-        return TimeList
+        result = [str(TimeIn), str(TimeNow), str(Duration)]
+        return result
 
 
 
@@ -127,15 +125,15 @@ class list_RDR:              # Gives us the PROPERLY FORMATTED LIST.
         prepareList = ServiceRDR(self.RoomID)
         prepareList.getValues()
         StringOne = str("Your room:\t\t\t" + self.RoomID)
-        StringTwo = str("Temperature:\t\t\t" + self.prepareList[0])
+        StringTwo = str("Temperature:\t\t" + self.prepareList[0])
         StringThree = str("FanSpeed:\t\t\t" + self.prepareList[1])
         StringFour = str("Fee Rate:\t\t\t" + self.prepareList[2])
         StringFive = str("Fee:\t\t\t\t" + self.prepareList[3])
         StringSix = ("Check In Time:\t\t" + self.prepareList[4])
         StringSeven = ("Time Now:\t\t" + self.prepareList[5])
         StringEight = ("Time in hotel:\t\t" + self.prepareList[6])
-        ReadyToPrint = [StringOne, StringTwo, StringThree, StringFour, StringFive, StringSix, StringSeven, StringEight]
-        return ReadyToPrint     # returns set of PROPERLY FORMATTED STRINGS.
+        result = [StringOne, StringTwo, StringThree, StringFour, StringFive, StringSix, StringSeven, StringEight]
+        return result     # returns set of PROPERLY FORMATTED STRINGS.
 
 
 
@@ -149,14 +147,17 @@ class list_RDR:              # Gives us the PROPERLY FORMATTED LIST.
 
 
 class ServiceInvoice:
+    print("Invoice Service running")
     pass
 
 
 class InvoiceData:
+    print("Invoice Data Gathered...")
     pass
 
 
 class InvoicePrinter:
+    print("Invoice Printer is on...")
     pass
 
 

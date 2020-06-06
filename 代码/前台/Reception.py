@@ -6,18 +6,19 @@ class ReceptionController:
         self.OutputType = OutputType
         self.ID = RoomID
         self.ThisRDR = ServiceRDR(self.ID)
-        self.ThisInvoice = ServiceRDR(self.ID)
+        self.ThisInvoice = ServiceInvoice(self.ID)
 
 
     # this method is the constructor of RDR and invoice.
     def commandCreateList(self):
         if self.RDRorI == '1':
             print("RDR processing...")
-            ListContent = self.ThisRDR.createList()
-            self.Print(ListContent)
+            RDRContent = self.ThisRDR.createList()
+            self.Print(RDRContent)
         elif self.RDRorI == '2':
             print("Invoice processing...")
-
+            InvoiceContent = self.ThisInvoice.createInvoiceData()
+            self.Print(InvoiceContent)
         else:
             print("Processing error")
 
@@ -38,7 +39,15 @@ class ReceptionController:
 
 
         elif self.RDRorI == '2':
-            print("Printing invoice...")
+            print("Printing DR...")
+            Printer = InvoicePrinter()
+            if self.OutputType == '1':
+                Printer.PutOnScreen(ListContent)
+            elif self.OutputType == '2':
+                Printer.PutInTxt()
+            else:
+                print("Printer error")
+
 
         else:
             print('print error')
@@ -89,7 +98,6 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
     # does everything related to time and puts it in special list
     def getRequestDuration(self):
         import datetime
-        # datetime.datetime(2017, 4, 5, 0, 17, 8, 24239)
         TimeIn = self.ValuesSource.CheckInTime
         TimeNow = datetime.datetime.now()
         Duration = TimeNow - TimeIn
@@ -147,18 +155,44 @@ class list_RDR:              # Gives us the PROPERLY FORMATTED LIST.
 
 
 class ServiceInvoice:
-    print("Invoice Service running")
-    pass
+    def __init__(self, ID):
+        self.RoomID: int = ID
+        self.ValuesSource = Database()
+
+    def createInvoiceData(self):
+        ThisList = InvoiceData(self.RoomID)
+        OutputScreen = ThisList.ReadyList()
+        return OutputScreen
 
 
 class InvoiceData:
-    print("Invoice Data Gathered...")
-    pass
+    def __init__(self, RoomID):
+        self.RoomID: int = RoomID
+        self.ValuesSource = Database()
+
+    def ReadyList(self):
+        import datetime
+        TimeIn = str(self.ValuesSource.CheckInTime)
+        TimeNow = str(datetime.datetime.now())
+        OurFee = str(self.ValuesSource.Fee)
+        StringOne = str("Your room:\t\t\t" + self.RoomID)
+        StringTwo = ("Check In Time:\t\t" + TimeIn)
+        StringThree = ("Time Now:\t\t" + TimeNow)
+        StringFour =  ("Fee:\t\t\t\t" + OurFee)
+        result = (StringOne, StringTwo, StringThree, StringFour)
+        return result
 
 
 class InvoicePrinter:
-    print("Invoice Printer is on...")
-    pass
+    def __init__(self):
+        self.RoomID: int = RoomID
+
+    def PutOnScreen(self, ListContent):
+        for i in range(len(ListContent)):  # output every string of our list_RDR
+            print(ListContent[i])
+
+    def PutInTxt(self):
+        print("Sorry, invoice can't be printed physically.")
 
 
 ##################################################################################

@@ -43,8 +43,6 @@ class ReceptionController:
             Printer = InvoicePrinter()
             if self.OutputType == '1':
                 Printer.PutOnScreen(ListContent)
-            elif self.OutputType == '2':
-                Printer.PutInTxt()
             else:
                 print("Printer error")
 
@@ -160,25 +158,27 @@ class ServiceInvoice:
         self.ValuesSource = Database()
 
     def createInvoiceData(self):
-        ThisList = InvoiceData(self.RoomID)
+        import datetime
+        TimeIn = str(self.ValuesSource.CheckInTime)
+        TimeNow = str(datetime.datetime.now())
+        OurFee = str(self.ValuesSource.Fee)
+        ThisList = InvoiceData(self.RoomID, TimeIn, TimeNow, OurFee)
         OutputScreen = ThisList.ReadyList()
         return OutputScreen
 
 
 class InvoiceData:
-    def __init__(self, RoomID):
+    def __init__(self, RoomID, TimeIn, TimeNow, OurFee):
         self.RoomID: int = RoomID
-        self.ValuesSource = Database()
+        self.TimeIn = TimeIn
+        self.TimeNow = TimeNow
+        self.OurFee = OurFee
 
-    def ReadyList(self):
-        import datetime
-        TimeIn = str(self.ValuesSource.CheckInTime)
-        TimeNow = str(datetime.datetime.now())
-        OurFee = str(self.ValuesSource.Fee)
+    def ReadyList(self, ):
         StringOne = str("Your room:\t\t\t" + self.RoomID)
-        StringTwo = ("Check In Time:\t\t" + TimeIn)
-        StringThree = ("Time Now:\t\t" + TimeNow)
-        StringFour =  ("Fee:\t\t\t\t" + OurFee)
+        StringTwo = ("Check In Time:\t\t" + self.TimeIn)
+        StringThree = ("Time Now:\t\t" + self.TimeNow)
+        StringFour =  ("Fee:\t\t\t\t" + self.OurFee)
         result = (StringOne, StringTwo, StringThree, StringFour)
         return result
 
@@ -191,9 +191,6 @@ class InvoicePrinter:
         for i in range(len(ListContent)):  # output every string of our list_RDR
             print(ListContent[i])
 
-    def PutInTxt(self):
-        print("Sorry, invoice can't be printed physically.")
-
 
 ##################################################################################
 #                                                                                #
@@ -204,7 +201,10 @@ class InvoicePrinter:
 
 RDRorI = input("RDR or I (1 or 2)\n")
 RoomID = input("Enter the room ID (1-5)\n")
-OutputType: str = input("Show on the screen or Print (1 or 2)\n")
+if RDRorI == '1':
+    OutputType: str = input("Show on the screen or Print (1 or 2)\n")
+elif RDRorI == '2':
+    OutputType = '1'
 ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
 ReceptionQuery.commandCreateList()
 # if UserChoice == ('1'):

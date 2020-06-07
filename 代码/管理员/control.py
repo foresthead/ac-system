@@ -57,3 +57,13 @@ class control:
         else :
             return "Error"
 
+        
+        
+# test 
+'''Control = control()
+dispatch , queue = Control.PowerON() #once powered on the dispatch and queue classes has been created
+dispatch.ChangeState("Ready")  # after powering up the services state change from not ready to ready
+dispatch.PrintState()
+print(Control.Temp_highLimit)
+Control.StartUp(dispatch, queue)'''
+

@@ -1,4 +1,8 @@
 
+# RDR is Request Detail Records == 详单
+# Invoice == 账单
+
+
 # controller will tell classes what to do
 class ReceptionController:
     def __init__(self, RDRorI, OutputType, RoomID):
@@ -114,12 +118,11 @@ class RDRPrinter():
 
     def PutInTxt(self, ListContent):
         import webbrowser
-        # for i in range(len(ListContent)):  # output every string of our list_RDR
         with open('detailed_record.txt', 'w') as printfile:
             for line in ListContent:
                 printfile.write(line + '\n')
             # printfile.write(ListContent[i])
-            webbrowser.open("detailed_record.txt")         #opening the reciept in notepad
+            webbrowser.open("detailed_record.txt")         # opening the reciept in notepad
 
 
 class list_RDR:              # Gives us the PROPERLY FORMATTED LIST.
@@ -198,7 +201,7 @@ class InvoicePrinter:
 #                                                                                #
 ##################################################################################
 
-
+# RDR - Detailed Records(详单); I - invoice(账单)
 RDRorI = input("RDR or I (1 or 2)\n")
 RoomID = input("Enter the room ID (1-5)\n")
 if RDRorI == '1':
@@ -207,9 +210,3 @@ elif RDRorI == '2':
     OutputType = '1'
 ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
 ReceptionQuery.commandCreateList()
-# if UserChoice == ('1'):
-#     ReceptionQuery.Create_PrintList()
-# elif UserChoice == ('2'):
-#     ReceptionQuery.Print()
-# else:
-#     print("error")

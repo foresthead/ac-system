@@ -43,11 +43,7 @@ class Ui_MainWindowR(object):
     def retranslateUi(self, MainWindowR):
         _translate = QtCore.QCoreApplication.translate
         MainWindowR.setWindowTitle(_translate("MainWindowR", "Reception Menu"))
-        self.textBrowser.setHtml(_translate("MainWindowR", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-style:italic;\">Detailed record or invoice will appear here...</span></p></body></html>"))
+        self.textBrowser.setHtml(_translate("MainWindowR", "Detailed record or invoice will appear here..."))
         self.RDRbutton.setText(_translate("MainWindowR", "Detailed record"))
         self.InvoiceButton.setText(_translate("MainWindowR", "Invoice"))
         self.BackButtonR.setText(_translate("MainWindowR", "Back"))

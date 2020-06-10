@@ -17,8 +17,10 @@ class Ui_MainWindowR(object):
         MainWindowR.setMinimumSize(QtCore.QSize(230, 190))
         self.centralwidget = QtWidgets.QWidget(MainWindowR)
         self.centralwidget.setObjectName("centralwidget")
+
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
+
         self.labelID = QtWidgets.QLabel(self.centralwidget)
         self.labelID.setObjectName("labelID")
         self.verticalLayout_3.addWidget(self.labelID)
@@ -27,20 +29,30 @@ class Ui_MainWindowR(object):
         self.spinID.setMaximum(5)
         self.spinID.setObjectName("spinID")
         self.verticalLayout_3.addWidget(self.spinID)
+
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser.setObjectName("textBrowser")
         self.verticalLayout_3.addWidget(self.textBrowser)
+
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
+
         self.RDRbutton = QtWidgets.QPushButton(self.centralwidget)
         self.RDRbutton.setObjectName("RDRbutton")
         self.verticalLayout.addWidget(self.RDRbutton)
+
         self.InvoiceButton = QtWidgets.QPushButton(self.centralwidget)
         self.InvoiceButton.setObjectName("InvoiceButton")
         self.verticalLayout.addWidget(self.InvoiceButton)
+
+        self.RDRPrintButton = QtWidgets.QPushButton(self.centralwidget)
+        self.RDRPrintButton.setObjectName("RDRPrintButton")
+        self.verticalLayout.addWidget(self.RDRPrintButton)
+
         self.BackButtonR = QtWidgets.QPushButton(self.centralwidget)
         self.BackButtonR.setObjectName("BackButtonR")
         self.verticalLayout.addWidget(self.BackButtonR)
+
         self.verticalLayout_3.addLayout(self.verticalLayout)
         MainWindowR.setCentralWidget(self.centralwidget)
 
@@ -58,6 +70,7 @@ class Ui_MainWindowR(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-style:italic;\">Detailed record or invoice will appear here...</span></p></body></html>"))
         self.RDRbutton.setText(_translate("MainWindowR", "Detailed record"))
         self.InvoiceButton.setText(_translate("MainWindowR", "Invoice"))
+        self.RDRPrintButton.setText(_translate("MainWindowR", "Print detailed record"))
         self.BackButtonR.setText(_translate("MainWindowR", "Back"))
 
 

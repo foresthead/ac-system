@@ -46,6 +46,10 @@ class Ui_MainWindowR(object):
         self.InvoiceButton.setObjectName("InvoiceButton")
         self.verticalLayout.addWidget(self.InvoiceButton)
 
+        self.RDRPrintButton = QtWidgets.QPushButton(self.centralwidget)
+        self.RDRPrintButton.setObjectName("RDRPrintButton")
+        self.verticalLayout.addWidget(self.RDRPrintButton)
+
         self.BackButtonR = QtWidgets.QPushButton(self.centralwidget)
         self.BackButtonR.setObjectName("BackButtonR")
         self.verticalLayout.addWidget(self.BackButtonR)
@@ -63,6 +67,7 @@ class Ui_MainWindowR(object):
         self.textBrowser.setHtml(_translate("MainWindowR", "Invoice/RDR:"))
         self.RDRbutton.setText(_translate("MainWindowR", "Detailed record"))
         self.InvoiceButton.setText(_translate("MainWindowR", "Invoice"))
+        self.RDRPrintButton.setText(_translate("MainWindowR", "Print detailed record"))
         self.BackButtonR.setText(_translate("MainWindowR", "Back"))
 
 

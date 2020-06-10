@@ -54,9 +54,9 @@ class Ui_OutputWindowR(object):
 
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)
+    output_app = QtWidgets.QApplication(sys.argv)
     OutputWindowR = QtWidgets.QMainWindow()
-    ui = Ui_OutputWindowR()
-    ui.setupUi(OutputWindowR)
+    output_ui = Ui_OutputWindowR()
+    output_ui.setupUi(OutputWindowR)
     OutputWindowR.show()
-    sys.exit(app.exec_())
+    sys.exit(output_app.exec_())

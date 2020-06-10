@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 from ReceptionMenu import Ui_MainWindowR
+import os
+import openpyxl
 
 # RDR is Request Detail Records == 详单
 # Invoice == 账单
@@ -20,11 +22,9 @@ class ReceptionController:
     # this method is the constructor of RDR and invoice.
     def commandCreateList(self):
         if self.RDRorI == '1':
-            print("RDR processing...")
             RDRContent = self.ThisRDR.createList()
             self.Print(RDRContent)
         elif self.RDRorI == '2':
-            print("Invoice processing...")
             InvoiceContent = self.ThisInvoice.createInvoiceData()
             self.Print(InvoiceContent)
         else:
@@ -35,8 +35,6 @@ class ReceptionController:
     def Print(self, ListContent):
         self.ListContent = ListContent
         if self.RDRorI == '1':
-            print("Printing DR...")
-            print("Printing DR...")
             if self.OutputType == '1':
                 self.PutOnScreen(ListContent)
             elif self.OutputType == '2':
@@ -45,7 +43,6 @@ class ReceptionController:
                 print("Printer error")
 
         elif self.RDRorI == '2':
-            print("Printing invoice...")
             if self.OutputType == '1':
                 self.PutOnScreen(ListContent)
             else:
@@ -197,7 +194,13 @@ def UiRdrInput():
     RDRorI = '1'
     OutputType = '1'
     RoomID = str(ui.spinID.value())
-    print(RDRorI, OutputType, RoomID)
+    ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
+    ReceptionQuery.commandCreateList()
+
+def UiRdrPrintInput():
+    RDRorI = '1'
+    OutputType = '2'
+    RoomID = str(ui.spinID.value())
     ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
     ReceptionQuery.commandCreateList()
 
@@ -205,7 +208,6 @@ def UiInvoiceInput():
     RDRorI = ('2')
     OutputType = ('1')
     RoomID = str(ui.spinID.value())
-    print(RDRorI, OutputType, RoomID)
     ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
     ReceptionQuery.commandCreateList()
 
@@ -222,16 +224,7 @@ if __name__ == "__main__":
             #create hook logic
             ui.RDRbutton.clicked.connect(UiRdrInput)
             ui.InvoiceButton.clicked.connect(UiInvoiceInput)
+            ui.RDRPrintButton.clicked.connect(UiRdrPrintInput)
 
             #run main loop
             sys.exit(app.exec_())
-
-# RDR - Detailed Records(详单); I - invoice(账单)
-# RDRorI = input("RDR or I (1 or 2)\n")
-# RoomID = input("Enter the room ID (1-5)\n")
-# if RDRorI == '1':
-#     OutputType: str = input("Show on the screen or Print (1 or 2)\n")
-# elif RDRorI == '2':
-#     OutputType = '1'
-# ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
-# ReceptionQuery.commandCreateList()

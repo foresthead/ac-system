@@ -1,9 +1,13 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from ReceptionMenu import Ui_MainWindowR
 
 # RDR is Request Detail Records == 详单
 # Invoice == 账单
 
 
-# controller will tell classes what to do
+# controller will tell classes what to do AND NOW it's also printing values
+
 class ReceptionController:
     def __init__(self, RDRorI, OutputType, RoomID):
         self.RDRorI = RDRorI  # this attribute will tell the class, what did user choose - invoice or DR
@@ -27,32 +31,45 @@ class ReceptionController:
             print("Processing error")
 
 
-
     # this method contains sends a printing command
     def Print(self, ListContent):
         self.ListContent = ListContent
         if self.RDRorI == '1':
             print("Printing DR...")
-            Printer = RDRPrinter()
+            print("Printing DR...")
             if self.OutputType == '1':
-                Printer.PutOnScreen(ListContent)
+                self.PutOnScreen(ListContent)
             elif self.OutputType == '2':
-                Printer.PutInTxt(ListContent)
+                self.PutInTxt(ListContent)
             else:
                 print("Printer error")
-
 
         elif self.RDRorI == '2':
-            print("Printing DR...")
-            Printer = InvoicePrinter()
+            print("Printing invoice...")
             if self.OutputType == '1':
-                Printer.PutOnScreen(ListContent)
+                self.PutOnScreen(ListContent)
             else:
                 print("Printer error")
-
-
         else:
             print('print error')
+
+    # These methods USED TO BE a part of a printer class. But it's not working with GUI I don't know why
+
+    def PutOnScreen(self, ListContent):
+        # ui.textBrowser.setText(ListContent)
+        for i in range(len(ListContent)):  # output every string of our list_RDR
+            # print(ListContent[i])
+            ui.textBrowser.append(ListContent[i])
+        ui.textBrowser.append("=================================")
+
+    def PutInTxt(self, ListContent):
+        import webbrowser
+        with open('detailed_record.txt', 'w') as printfile:
+            for line in ListContent:
+                printfile.write(line + '\n')
+            webbrowser.open("detailed_record.txt")
+
+
 
 class Database:
     def __init__(self):
@@ -108,21 +125,6 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
 
 
 
-class RDRPrinter():
-    def __init__(self):
-        self.RoomID: int = RoomID
-
-    def PutOnScreen(self, ListContent):
-        for i in range(len(ListContent)):      # output every string of our list_RDR
-            print(ListContent[i])
-
-    def PutInTxt(self, ListContent):
-        import webbrowser
-        with open('detailed_record.txt', 'w') as printfile:
-            for line in ListContent:
-                printfile.write(line + '\n')
-            # printfile.write(ListContent[i])
-            webbrowser.open("detailed_record.txt")         # opening the reciept in notepad
 
 
 class list_RDR:              # Gives us the PROPERLY FORMATTED LIST.
@@ -133,14 +135,14 @@ class list_RDR:              # Gives us the PROPERLY FORMATTED LIST.
     def ReadyList(self):
         prepareList = ServiceRDR(self.RoomID)
         prepareList.getValues()
-        StringOne = str("Your room:\t\t\t" + self.RoomID)
+        StringOne = str("Your room:\t\t" + self.RoomID)
         StringTwo = str("Temperature:\t\t" + self.prepareList[0])
-        StringThree = str("FanSpeed:\t\t\t" + self.prepareList[1])
-        StringFour = str("Fee Rate:\t\t\t" + self.prepareList[2])
-        StringFive = str("Fee:\t\t\t\t" + self.prepareList[3])
-        StringSix = ("Check In Time:\t\t" + self.prepareList[4])
-        StringSeven = ("Time Now:\t\t" + self.prepareList[5])
-        StringEight = ("Time in hotel:\t\t" + self.prepareList[6])
+        StringThree = str("FanSpeed:\t\t" + self.prepareList[1])
+        StringFour = str("Fee Rate:\t\t" + self.prepareList[2])
+        StringFive = str("Fee:\t\t" + self.prepareList[3])
+        StringSix = ("Check In Time:\t" + self.prepareList[4])
+        StringSeven = ("Time Now:\t" + self.prepareList[5])
+        StringEight = ("Time in hotel:\t" + self.prepareList[6])
         result = [StringOne, StringTwo, StringThree, StringFour, StringFive, StringSix, StringSeven, StringEight]
         return result     # returns set of PROPERLY FORMATTED STRINGS.
 
@@ -178,21 +180,12 @@ class InvoiceData:
         self.OurFee = OurFee
 
     def ReadyList(self, ):
-        StringOne = str("Your room:\t\t\t" + self.RoomID)
-        StringTwo = ("Check In Time:\t\t" + self.TimeIn)
-        StringThree = ("Time Now:\t\t" + self.TimeNow)
-        StringFour =  ("Fee:\t\t\t\t" + self.OurFee)
+        StringOne = str("Your room:\t" + self.RoomID)
+        StringTwo = ("Check In Time:\t" + self.TimeIn)
+        StringThree = ("Time Now:\t" + self.TimeNow)
+        StringFour =  ("Fee:\t" + self.OurFee)
         result = (StringOne, StringTwo, StringThree, StringFour)
         return result
-
-
-class InvoicePrinter:
-    def __init__(self):
-        self.RoomID: int = RoomID
-
-    def PutOnScreen(self, ListContent):
-        for i in range(len(ListContent)):  # output every string of our list_RDR
-            print(ListContent[i])
 
 
 ##################################################################################
@@ -200,13 +193,45 @@ class InvoicePrinter:
 #                                    MAIN                                        #
 #                                                                                #
 ##################################################################################
+def UiRdrInput():
+    RDRorI = '1'
+    OutputType = '1'
+    RoomID = str(ui.spinID.value())
+    print(RDRorI, OutputType, RoomID)
+    ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
+    ReceptionQuery.commandCreateList()
+
+def UiInvoiceInput():
+    RDRorI = ('2')
+    OutputType = ('1')
+    RoomID = str(ui.spinID.value())
+    print(RDRorI, OutputType, RoomID)
+    ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
+    ReceptionQuery.commandCreateList()
+
+if __name__ == "__main__":
+            # create the app
+            app = QtWidgets.QApplication(sys.argv)
+
+            #create the form and init UI
+            MainWindowR = QtWidgets.QMainWindow()
+            ui = Ui_MainWindowR()
+            ui.setupUi(MainWindowR)
+            MainWindowR.show()
+
+            #create hook logic
+            ui.RDRbutton.clicked.connect(UiRdrInput)
+            ui.InvoiceButton.clicked.connect(UiInvoiceInput)
+
+            #run main loop
+            sys.exit(app.exec_())
 
 # RDR - Detailed Records(详单); I - invoice(账单)
-RDRorI = input("RDR or I (1 or 2)\n")
-RoomID = input("Enter the room ID (1-5)\n")
-if RDRorI == '1':
-    OutputType: str = input("Show on the screen or Print (1 or 2)\n")
-elif RDRorI == '2':
-    OutputType = '1'
-ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
-ReceptionQuery.commandCreateList()
+# RDRorI = input("RDR or I (1 or 2)\n")
+# RoomID = input("Enter the room ID (1-5)\n")
+# if RDRorI == '1':
+#     OutputType: str = input("Show on the screen or Print (1 or 2)\n")
+# elif RDRorI == '2':
+#     OutputType = '1'
+# ReceptionQuery = ReceptionController(RDRorI, OutputType, RoomID)
+# ReceptionQuery.commandCreateList()

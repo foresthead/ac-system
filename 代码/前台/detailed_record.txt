@@ -4,5 +4,5 @@ FanSpeed:		1
 Fee Rate:		5
 Fee:		15
 Check In Time:	2017-02-26 00:00:00
-Time Now:	2020-06-10 21:47:00.830050
-Time in hotel:	1200 days, 21:47:00.830050
+Time Now:	2020-06-11 12:02:45.333695
+Time in hotel:	1201 days, 12:02:45.333695

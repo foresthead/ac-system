@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-from ReceptionMenu import Ui_MainWindowR
+from COMMONMenu import Ui_HotelMenu
 import os
 import openpyxl
 
@@ -217,7 +217,7 @@ if __name__ == "__main__":
 
             #create the form and init UI
             MainWindowR = QtWidgets.QMainWindow()
-            ui = Ui_MainWindowR()
+            ui = Ui_HotelMenu()
             ui.setupUi(MainWindowR)
             MainWindowR.show()
 

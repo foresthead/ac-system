@@ -56,8 +56,8 @@ class ReceptionController:
         # ui.textBrowser.setText(ListContent)
         for i in range(len(ListContent)):  # output every string of our list_RDR
             # print(ListContent[i])
-            ui.textBrowser.append(ListContent[i])
-        ui.textBrowser.append("=================================")
+            ui.textBrowser_reception.append(ListContent[i])
+        ui.textBrowser_reception.append("=================================")
 
     def PutInTxt(self, ListContent):
         import webbrowser

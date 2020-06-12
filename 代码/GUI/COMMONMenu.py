@@ -253,3 +253,23 @@ if __name__ == "__main__":
     ui.setupUi(HotelMenu)
     HotelMenu.show()
     sys.exit(app.exec_())
+
+    # OurTimeList = self.getRequestDuration()
+    # OurTemperature = self.sheet.cell(row=self.RoomRow, column=11).value
+    # OurFanSpeed = self.sheet.cell(row=self.RoomRow, column=12).value
+    # OurFeeRate = self.sheet.cell(row=self.RoomRow, column=13).value
+    # OurFee = int(OurFanSpeed) * int(OurFeeRate) * (int(OurTemperature) - 19)
+    # self.sheet.cell(row=self.RoomRow, column=10).value
+#     book = openpyxl.load_workbook('./输入1.xlsx')     # database loading
+#         sheet = book.active
+#         RoomRow = (int(self.RoomID)+1)
+
+self.RoomID = RoomID
+self.book = openpyxl.load_workbook('./输入1.xlsx')  # database loading
+self.sheet = self.book.active
+self.row_id = (int(self.RoomID) + 1)
+self.FanSpeed = self.sheet.cell(row=self.RoomRow, column=12).value
+self.FeeRate = self.sheet.cell(row=self.RoomRow, column=13).value
+self.Temperature = self.sheet.cell(row=self.RoomRow, column=11).value
+self.CheckInTime = self.sheet.cell(row=self.RoomRow, column=10).value
+self.Fee = self.FanSpeed * self.FeeRate * (self.Temperature - 25)

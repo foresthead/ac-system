@@ -22,6 +22,16 @@ class ReceptionController:
     # this method is the constructor of RDR and invoice.
     def commandCreateList(self):
         if self.RDRorI == '1':
+
+            # first, we need to add Number of RDR (+1)
+            # self.book = openpyxl.load_workbook('./输入1.xlsx')  # database loading
+            # self.sheet = self.book.active
+            # self.RoomRow = (int(self.RoomID) + 1)
+
+            # a = (self.sheet.cell(row=self.RoomRow, column=6).value)
+            # print(a)
+
+
             RDRContent = self.ThisRDR.createList()
             self.Print(RDRContent)
         elif self.RDRorI == '2':
@@ -69,13 +79,16 @@ class ReceptionController:
 
 
 class Database:
-    def __init__(self):
-        import datetime
-        self.FanSpeed = 1
-        self.FeeRate = 5
-        self.Temperature = 28
-        self.CheckInTime = datetime.datetime(2017, 2, 26)
-        self.Fee = self.FanSpeed * self.FeeRate * (self.Temperature - 25)
+    def __init__(self, RoomID):
+        self.RoomID = RoomID
+        self.book = openpyxl.load_workbook('./ACC_Database.xlsx')  # database loading
+        self.sheet = self.book.active
+        self.RoomRow = (int(self.RoomID) + 1)               # +1 cuz the first row is the column titles
+        self.FanSpeed = self.sheet.cell(row=self.RoomRow, column=12).value
+        self.FeeRate = self.sheet.cell(row=self.RoomRow, column=13).value
+        self.Temperature = self.sheet.cell(row=self.RoomRow, column=11).value
+        self.CheckInTime = self.sheet.cell(row=self.RoomRow, column=10).value
+        self.Fee = self.FanSpeed * self.FeeRate * (self.Temperature - 20)
 
 ##################################################################################
 #                                                                                #
@@ -87,10 +100,19 @@ class Database:
 class ServiceRDR:   # This class made for creating DR that we can output on screen or print to file.
     def __init__(self, ID):
         self.RoomID: int = ID
-        self.ValuesSource = Database()
+        self.ValuesSource = Database(self.RoomID)
+        self.book = openpyxl.load_workbook('./ACC_Database.xlsx')  # database loading
+        self.sheet = self.book.active
+        self.RoomRow = (int(self.RoomID) + 1)
 
     # taking values using getValues, putting them to list_RDR where they are properly formatted
+    # adding RDR to database
     def createList(self):
+        NewNumberRDR = (self.sheet.cell(row=self.RoomRow, column=6).value)+1
+        self.sheet.cell(row=self.RoomRow, column=6).value = NewNumberRDR
+        self.book.save('./ACC_Database.xlsx')
+
+
         prepareList = self.getValues()
         ThisList = list_RDR(self.RoomID, prepareList)
         OutputScreen = ThisList.ReadyList()
@@ -157,7 +179,7 @@ class list_RDR:              # Gives us the PROPERLY FORMATTED LIST.
 class ServiceInvoice:
     def __init__(self, ID):
         self.RoomID: int = ID
-        self.ValuesSource = Database()
+        self.ValuesSource = Database(self.RoomID)
 
     def createInvoiceData(self):
         import datetime

@@ -84,10 +84,10 @@ class Database:
         self.book = openpyxl.load_workbook('./ACC_Database.xlsx')  # database loading
         self.sheet = self.book.active
         self.RoomRow = (int(self.RoomID) + 1)               # +1 cuz the first row is the column titles
-        self.FanSpeed = self.sheet.cell(row=self.RoomRow, column=12).value
-        self.FeeRate = self.sheet.cell(row=self.RoomRow, column=13).value
-        self.Temperature = self.sheet.cell(row=self.RoomRow, column=11).value
-        self.CheckInTime = self.sheet.cell(row=self.RoomRow, column=10).value
+        self.FanSpeed = self.sheet.cell(row=self.RoomRow, column=4).value  # 12 column is the L column
+        self.FeeRate = self.sheet.cell(row=self.RoomRow, column=5).value
+        self.Temperature = self.sheet.cell(row=self.RoomRow, column=3).value
+        self.CheckInTime = self.sheet.cell(row=self.RoomRow, column=2).value
         self.Fee = self.FanSpeed * self.FeeRate * (self.Temperature - 20)
 
 ##################################################################################
@@ -101,7 +101,7 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
     def __init__(self, ID):
         self.RoomID: int = ID
         self.ValuesSource = Database(self.RoomID)
-        self.book = openpyxl.load_workbook('./ACC_Database.xlsx')  # database loading
+        self.book = openpyxl.load_workbook('./输入1.xlsx')  # database loading
         self.sheet = self.book.active
         self.RoomRow = (int(self.RoomID) + 1)
 
@@ -110,7 +110,7 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
     def createList(self):
         NewNumberRDR = (self.sheet.cell(row=self.RoomRow, column=6).value)+1
         self.sheet.cell(row=self.RoomRow, column=6).value = NewNumberRDR
-        self.book.save('./ACC_Database.xlsx')
+        self.book.save('./输入1.xlsx')
 
 
         prepareList = self.getValues()

@@ -1,7 +1,9 @@
 import datetime
 import os
 import openpyxl
-
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from COMMONMenu import Ui_HotelMenu
 
 def date_sort3(ls):
     # 日期排序
@@ -246,9 +248,28 @@ def main(data_path):
         month_num = int(temp[1])
         process_day('./months/'+i, year_num, month_num)
 
+    ui.textBrowser_admin.append("Done! All the reports can be found in the directory!")
+
+def PrintReportButton(self):
+    main('./输入1.xlsx')
 
 if __name__ == '__main__':
-    main('./输入1.xlsx')  # 输入总的数据，每年月周日在各自的文件夹中，如果表的时间的顺序是对的可以注释掉排序
+    # create the app
+    app = QtWidgets.QApplication(sys.argv)
+
+    # create the form and init UI
+    HotelMenu = QtWidgets.QMainWindow()
+    ui = Ui_HotelMenu()
+    ui.setupUi(HotelMenu)
+    HotelMenu.show()
+
+    # create hook logic
+    ui.ButtonPrint.clicked.connect(PrintReportButton)
+
+
+    # run main loop
+    sys.exit(app.exec_())
+    # main('./输入1.xlsx')  # 输入总的数据，每年月周日在各自的文件夹中，如果表的时间的顺序是对的可以注释掉排序
     # process_week('./years/2020.xlsx', 2020)
     # process_day('./months/2020-5.xlsx', 2020, 5)
     # process_year('./输入2.xlsx')

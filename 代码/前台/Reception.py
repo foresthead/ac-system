@@ -80,15 +80,34 @@ class ReceptionController:
 
 class Database:
     def __init__(self, RoomID):
+        import datetime
         self.RoomID = RoomID
-        self.book = openpyxl.load_workbook('./ACC_Database.xlsx')  # database loading
-        self.sheet = self.book.active
+        self.book1 = openpyxl.load_workbook('./ACC_Database.xlsx')  # book1 is the ACC database, book2 is shuru1
+        self.sheet1 = self.book1.active
+
+        self.book2 = openpyxl.load_workbook('./输入1.xlsx')
+        self.sheet2 = self.book2.active
+
         self.RoomRow = (int(self.RoomID) + 1)               # +1 cuz the first row is the column titles
-        self.FanSpeed = self.sheet.cell(row=self.RoomRow, column=4).value  # 12 column is the L column
-        self.FeeRate = self.sheet.cell(row=self.RoomRow, column=5).value
-        self.Temperature = self.sheet.cell(row=self.RoomRow, column=3).value
-        self.CheckInTime = self.sheet.cell(row=self.RoomRow, column=2).value
-        self.Fee = self.FanSpeed * self.FeeRate * (self.Temperature - 20)
+
+        #getting values from book1
+        self.FanSpeed = self.sheet1.cell(row=self.RoomRow, column=4).value  # 12 column is the L column
+        self.FeeRate = self.sheet1.cell(row=self.RoomRow, column=5).value
+        self.Temperature = self.sheet1.cell(row=self.RoomRow, column=3).value
+        self.CheckInTime = self.sheet1.cell(row=self.RoomRow, column=2).value
+        self.Fee = self.FanSpeed * self.FeeRate * (self.Temperature - 15)
+        self.TimeNow = datetime.datetime.now()
+
+
+        # putting values in book2
+        self.sheet2.cell(row=self.RoomRow, column=9).value = self.TimeNow
+
+        self.NewTotalFee = (self.sheet2.cell(row=self.RoomRow, column=4).value) + int(self.Fee)
+        self.sheet2.cell(row=self.RoomRow, column=4).value = self.NewTotalFee
+
+
+        self.book1.save('./ACC_Database.xlsx')
+        self.book2.save('./输入1.xlsx')
 
 ##################################################################################
 #                                                                                #
@@ -137,7 +156,7 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
     def getRequestDuration(self):
         import datetime
         TimeIn = self.ValuesSource.CheckInTime
-        TimeNow = datetime.datetime.now()
+        TimeNow = self.ValuesSource.TimeNow
         Duration = TimeNow - TimeIn
         result = [str(TimeIn), str(TimeNow), str(Duration)]
         return result

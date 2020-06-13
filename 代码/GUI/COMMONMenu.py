@@ -20,7 +20,7 @@ class Ui_HotelMenu(object):
         self.centralwidget = QtWidgets.QWidget(HotelMenu)
         self.centralwidget.setObjectName("centralwidget")
         self.labelMain = QtWidgets.QLabel(self.centralwidget)
-        self.labelMain.setGeometry(QtCore.QRect(270, 100, 141, 41))
+        self.labelMain.setGeometry(QtCore.QRect(240, 60, 201, 191))
         font = QtGui.QFont()
         font.setFamily("Microsoft Yi Baiti")
         font.setPointSize(26)
@@ -140,7 +140,7 @@ class Ui_HotelMenu(object):
         self.frameReception.setObjectName("frameReception")
         self.textBrowser_reception = QtWidgets.QTextBrowser(self.frameReception)
         self.textBrowser_reception.setGeometry(QtCore.QRect(20, 31, 191, 91))
-        self.textBrowser_reception.setObjectName("textBrowser_reception")
+        self.textBrowser_reception.setObjectName("textBrowser")
         self.layoutWidget = QtWidgets.QWidget(self.frameReception)
         self.layoutWidget.setGeometry(QtCore.QRect(20, 130, 191, 61))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -166,40 +166,19 @@ class Ui_HotelMenu(object):
         self.RDRbutton.raise_()
         self.RDRPrintButton.raise_()
         self.frameAdmin = QtWidgets.QFrame(self.centralwidget)
-        self.frameAdmin.setGeometry(QtCore.QRect(240, 210, 211, 251))
+        self.frameAdmin.setGeometry(QtCore.QRect(240, 260, 211, 211))
         self.frameAdmin.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frameAdmin.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frameAdmin.setObjectName("frameAdmin")
-        self.textBrowser_admin = QtWidgets.QTextBrowser(self.frameAdmin)
-        self.textBrowser_admin.setGeometry(QtCore.QRect(10, 40, 181, 121))
-        self.textBrowser_admin.setObjectName("textBrowser_admin")
-        self.gridLayoutWidget = QtWidgets.QWidget(self.frameAdmin)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 170, 181, 80))
-        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setObjectName("gridLayout")
-        self.ButtonMonth = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.ButtonMonth.setObjectName("ButtonMonth")
-        self.gridLayout.addWidget(self.ButtonMonth, 1, 0, 1, 1)
-        self.ButtonWeek = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.ButtonWeek.setObjectName("ButtonWeek")
-        self.gridLayout.addWidget(self.ButtonWeek, 0, 1, 1, 1)
-        self.ButtonYear = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.ButtonYear.setObjectName("ButtonYear")
-        self.gridLayout.addWidget(self.ButtonYear, 1, 1, 1, 1)
-        self.ButtonDaily = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.ButtonDaily.setObjectName("ButtonDaily")
-        self.gridLayout.addWidget(self.ButtonDaily, 0, 0, 1, 1)
-        self.ButtonPrint = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.ButtonPrint.setObjectName("ButtonPrint")
-        self.gridLayout.addWidget(self.ButtonPrint, 2, 0, 1, 1)
         self.groupBox_admin = QtWidgets.QGroupBox(self.frameAdmin)
-        self.groupBox_admin.setGeometry(QtCore.QRect(0, 10, 201, 241))
+        self.groupBox_admin.setGeometry(QtCore.QRect(0, 10, 201, 191))
         self.groupBox_admin.setObjectName("groupBox_admin")
-        self.groupBox_admin.raise_()
-        self.textBrowser_admin.raise_()
-        self.gridLayoutWidget.raise_()
+        self.ButtonPrint = QtWidgets.QPushButton(self.groupBox_admin)
+        self.ButtonPrint.setGeometry(QtCore.QRect(10, 160, 181, 17))
+        self.ButtonPrint.setObjectName("ButtonPrint")
+        self.textBrowser_admin = QtWidgets.QTextBrowser(self.groupBox_admin)
+        self.textBrowser_admin.setGeometry(QtCore.QRect(10, 30, 181, 121))
+        self.textBrowser_admin.setObjectName("textBrowser_admin")
         self.spinID = QtWidgets.QSpinBox(self.centralwidget)
         self.spinID.setGeometry(QtCore.QRect(250, 30, 191, 19))
         self.spinID.setMinimum(1)
@@ -231,17 +210,13 @@ class Ui_HotelMenu(object):
         self.rmb_C_label3.setText(_translate("HotelMenu", "元/1C°"))
         self.ConfirmButton_2.setText(_translate("HotelMenu", "Confirm"))
         self.groupBox_manager.setTitle(_translate("HotelMenu", "Manager"))
-        self.textBrowser_reception.setHtml(_translate("MainWindowR", "Invoice/RDR:"))
+        self.textBrowser_reception.setHtml(_translate("HotelMenu", "Invoice/RDR:"))
         self.InvoiceButton.setText(_translate("HotelMenu", "Invoice"))
         self.RDRbutton.setText(_translate("HotelMenu", "Detailed record"))
         self.RDRPrintButton.setText(_translate("HotelMenu", "Print detailed record"))
         self.groupBox_reception.setTitle(_translate("HotelMenu", "Reception"))
-        self.ButtonMonth.setText(_translate("HotelMenu", "Month report"))
-        self.ButtonWeek.setText(_translate("HotelMenu", "Week report"))
-        self.ButtonYear.setText(_translate("HotelMenu", "Year report"))
-        self.ButtonDaily.setText(_translate("HotelMenu", "Daily report"))
-        self.ButtonPrint.setText(_translate("HotelMenu", "Print"))
         self.groupBox_admin.setTitle(_translate("HotelMenu", "Administrator"))
+        self.ButtonPrint.setText(_translate("HotelMenu", "Print Reports"))
         self.labelID.setText(_translate("HotelMenu", "Room ID"))
 
 
@@ -253,23 +228,3 @@ if __name__ == "__main__":
     ui.setupUi(HotelMenu)
     HotelMenu.show()
     sys.exit(app.exec_())
-
-    # OurTimeList = self.getRequestDuration()
-    # OurTemperature = self.sheet.cell(row=self.RoomRow, column=11).value
-    # OurFanSpeed = self.sheet.cell(row=self.RoomRow, column=12).value
-    # OurFeeRate = self.sheet.cell(row=self.RoomRow, column=13).value
-    # OurFee = int(OurFanSpeed) * int(OurFeeRate) * (int(OurTemperature) - 19)
-    # self.sheet.cell(row=self.RoomRow, column=10).value
-#     book = openpyxl.load_workbook('./输入1.xlsx')     # database loading
-#         sheet = book.active
-#         RoomRow = (int(self.RoomID)+1)
-
-self.RoomID = RoomID
-self.book = openpyxl.load_workbook('./输入1.xlsx')  # database loading
-self.sheet = self.book.active
-self.row_id = (int(self.RoomID) + 1)
-self.FanSpeed = self.sheet.cell(row=self.RoomRow, column=12).value
-self.FeeRate = self.sheet.cell(row=self.RoomRow, column=13).value
-self.Temperature = self.sheet.cell(row=self.RoomRow, column=11).value
-self.CheckInTime = self.sheet.cell(row=self.RoomRow, column=10).value
-self.Fee = self.FanSpeed * self.FeeRate * (self.Temperature - 25)

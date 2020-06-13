@@ -238,10 +238,10 @@ if __name__ == "__main__":
             app = QtWidgets.QApplication(sys.argv)
 
             #create the form and init UI
-            MainWindowR = QtWidgets.QMainWindow()
+            HotelMenu = QtWidgets.QMainWindow()
             ui = Ui_HotelMenu()
-            ui.setupUi(MainWindowR)
-            MainWindowR.show()
+            ui.setupUi(HotelMenu)
+            HotelMenu.show()
 
             #create hook logic
             ui.RDRbutton.clicked.connect(UiRdrInput)

@@ -29,10 +29,10 @@
    <widget class="QLabel" name="labelMain">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>100</y>
-      <width>141</width>
-      <height>41</height>
+      <x>240</x>
+      <y>60</y>
+      <width>201</width>
+      <height>191</height>
      </rect>
     </property>
     <property name="font">
@@ -464,9 +464,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>210</y>
+      <y>260</y>
       <width>211</width>
-      <height>251</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -475,79 +475,42 @@ p, li { white-space: pre-wrap; }
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QTextBrowser" name="textBrowser_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>181</width>
-       <height>121</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QWidget" name="gridLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>170</y>
-       <width>181</width>
-       <height>80</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="0">
-       <widget class="QPushButton" name="ButtonMonth">
-        <property name="text">
-         <string>Month report</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QPushButton" name="ButtonWeek">
-        <property name="text">
-         <string>Week report</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="ButtonYear">
-        <property name="text">
-         <string>Year report</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="ButtonDaily">
-        <property name="text">
-         <string>Daily report</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="ButtonPrint">
-        <property name="text">
-         <string>Print</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QGroupBox" name="groupBox_admin">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>10</y>
        <width>201</width>
-       <height>241</height>
+       <height>191</height>
       </rect>
      </property>
      <property name="title">
       <string>Administrator</string>
      </property>
+     <widget class="QPushButton" name="ButtonPrint_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>181</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Print Reports</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>181</width>
+        <height>121</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
-    <zorder>groupBox_admin</zorder>
-    <zorder>textBrowser_2</zorder>
-    <zorder>gridLayoutWidget</zorder>
    </widget>
    <widget class="QSpinBox" name="spinID">
     <property name="geometry">

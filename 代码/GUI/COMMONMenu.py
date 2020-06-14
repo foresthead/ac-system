@@ -187,6 +187,18 @@ class Ui_HotelMenu(object):
         self.labelID = QtWidgets.QLabel(self.centralwidget)
         self.labelID.setGeometry(QtCore.QRect(250, 10, 191, 16))
         self.labelID.setObjectName("labelID")
+        self.ConnectRooms_label = QtWidgets.QLabel(self.centralwidget)
+        self.ConnectRooms_label.setGeometry(QtCore.QRect(250, 60, 71, 16))
+        self.ConnectRooms_label.setObjectName("ConnectRooms_label")
+        self.QueueRooms_label = QtWidgets.QLabel(self.centralwidget)
+        self.QueueRooms_label.setGeometry(QtCore.QRect(250, 76, 61, 21))
+        self.QueueRooms_label.setObjectName("QueueRooms_label")
+        self.QueueRooms_value_2 = QtWidgets.QLabel(self.centralwidget)
+        self.QueueRooms_value_2.setGeometry(QtCore.QRect(330, 60, 16, 16))
+        self.QueueRooms_value_2.setObjectName("QueueRooms_value_2")
+        self.QueueRooms_value = QtWidgets.QLabel(self.centralwidget)
+        self.QueueRooms_value.setGeometry(QtCore.QRect(330, 70, 16, 31))
+        self.QueueRooms_value.setObjectName("QueueRooms_value")
         HotelMenu.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(HotelMenu)
@@ -218,6 +230,10 @@ class Ui_HotelMenu(object):
         self.groupBox_admin.setTitle(_translate("HotelMenu", "Administrator"))
         self.ButtonPrint.setText(_translate("HotelMenu", "Print Reports"))
         self.labelID.setText(_translate("HotelMenu", "Room ID"))
+        self.ConnectRooms_label.setText(_translate("HotelMenu", "Connected rooms"))
+        self.QueueRooms_label.setText(_translate("HotelMenu", "Rooms in queue"))
+        self.QueueRooms_value_2.setText(_translate("HotelMenu", "0"))
+        self.QueueRooms_value.setText(_translate("HotelMenu", "0"))
 
 
 if __name__ == "__main__":

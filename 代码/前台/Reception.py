@@ -91,13 +91,22 @@ class Database:
         self.RoomRow = (int(self.RoomID) + 1)               # +1 cuz the first row is the column titles
 
         #getting values from book1
-        self.FanSpeed = self.sheet1.cell(row=self.RoomRow, column=4).value  # 12 column is the L column
-        self.FeeRate = self.sheet1.cell(row=self.RoomRow, column=5).value
+        self.FanSpeed = self.sheet1.cell(row=self.RoomRow, column=4).value
+        # self.FeeRate = self.sheet1.cell(row=self.RoomRow, column=5).value
         self.Temperature = self.sheet1.cell(row=self.RoomRow, column=3).value
         self.CheckInTime = self.sheet1.cell(row=self.RoomRow, column=2).value
-        self.Fee = self.FanSpeed * self.FeeRate * (self.Temperature - 15)
+        self.temp_lowLimit = self.sheet1.cell(row=2, column=7).value
+        if self.FanSpeed == 1:
+            self.NewFeeRate = self.sheet1.cell(row=2, column=10).value
+        elif self.FanSpeed == 2:
+            self.NewFeeRate = self.sheet1.cell(row=2, column=9).value
+        else:
+            self.NewFeeRate = self.sheet1.cell(row=2, column=8).value
+        self.Fee =  self.NewFeeRate * (self.Temperature - self.temp_lowLimit)
         self.TimeNow = datetime.datetime.now()
 
+        # putting values in book2
+        self.sheet1.cell(row=self.RoomRow, column=5).value = self.NewFeeRate
 
         # putting values in book2
         self.sheet2.cell(row=self.RoomRow, column=9).value = self.TimeNow
@@ -143,7 +152,7 @@ class ServiceRDR:   # This class made for creating DR that we can output on scre
         OurTimeList = self.getRequestDuration()
         OurTemperature = self.ValuesSource.Temperature
         OurFanSpeed = self.ValuesSource.FanSpeed
-        OurFeeRate = self.ValuesSource.FeeRate
+        OurFeeRate = self.ValuesSource.NewFeeRate
         OurFee = self.ValuesSource.Fee
         OurDateIn = OurTimeList[0]
         OurDateOut = OurTimeList[1]

@@ -28,7 +28,7 @@ class server:
       #print("received")
       return request
 
-
+   #send the data to a specific address
    def send_data(self, conn, data):
       response = pickle.dumps(data)
       conn.send(response)
@@ -41,3 +41,4 @@ class server:
 
    def connect_to(self, connection, host, port):
        connection.connect((host, port))
+        
